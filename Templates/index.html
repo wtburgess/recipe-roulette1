@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Roulette</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-image: url('https://imgtr.ee/images/2023/08/13/3a99f791e989915de0fa1a252748bf2f.jpeg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #FFFFFF;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        .recipe-list {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 20px 0;
+        }
+
+        .recipe-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .debug-section {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        #ingredients {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button[type="submit"] {
+            background-color: #fff;
+            color: #aaaaaa;
+            font-size: 14px;
+            border: 2px solid #aaaaaa;
+            padding: 10px 20px;
+            margin: 8px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #aaaaaa;
+            color: #fff;
+        }
+
+           /* Styling for the new image */
+           .new-image {
+            max-width: 100%; /* Ensure the image doesn't exceed the container width */
+            display: block; /* Remove any inline spacing */
+            margin: 20px auto; /* Center the image horizontally and add spacing */
+        }
+
+    </style>
+
+</head>
+<body>
+
+        <!-- Navigation bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Recipe Roulette</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Match</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('recipes') }}">Recipes</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('ingredient_overview') }}">Ingredients</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    <h1>Recipe Generator</h1>
+
+      <div>
+        {% for recipe_name in matching_recipes %}
+            {{ recipe_name }}<br>
+        {% endfor %}
+    </div>
+
+    <script>
+        console.log({{ matching_recipes|tojson }});
+    </script>
+
+<div class="position-relative overflow-hidden p-2 p-md-1 m-md-5 text-center bg-transparant">
+    <div class="col-md-5 p-lg-5 mx-auto my-5 generate-button">
+        <form method="post">
+            <label for="ingredients">Enter your ingredients (comma-separated):</label>
+            <input type="text" id="ingredients" name="ingredients" required>
+            <button type="submit">Generate Recipes</button>
+        </form>
+    </div>
+</div>
+
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                  {% if category == 'message' %}
+                    <div class="alert alert-warning" role="alert">
+                  {% else %}
+                    <div class="alert alert-{{ category }}" role="alert">
+                  {% endif %}
+                    {{ message }}
+                  </div>
+              {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+      </div>
+      <div class="position-relative overflow-hidden p-3 p-md-3 m-md-3 text-center bg-light">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+          <h1 class="display-4 font-weight-normal">Other ideas</h1>
+          <p class="lead font-weight-normal">.Recipe ideas</p>
+          <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+        </div>
+        <div class="product-device box-shadow d-none d-md-block"></div>
+        <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+      </div>
+
+</body>
+</html>

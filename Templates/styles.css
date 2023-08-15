@@ -1,0 +1,64 @@
+/* styles.css */
+       body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-image: url('https://imgtr.ee/images/2023/08/13/3a99f791e989915de0fa1a252748bf2f.jpeg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #FFFFFF;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        .recipe-list {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 20px 0;
+        }
+
+        .recipe-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .debug-section {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        #ingredients {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button[type="submit"] {
+            background-color: #fff;
+            color: #aaaaaa;
+            border: 2px solid #aaaaaa;
+            padding: 8px 15px;
+            margin: 8px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #aaaaaa;
+            color: #fff;
+        }
+
+           /* Styling for the new image */
+           .new-image {
+            max-width: 100%; /* Ensure the image doesn't exceed the container width */
+            display: block; /* Remove any inline spacing */
+            margin: 20px auto; /* Center the image horizontally and add spacing */
+        }
